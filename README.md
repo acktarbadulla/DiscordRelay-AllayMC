@@ -1,57 +1,18 @@
-# Allay Java Plugin Template
+# DiscordRelay for AllayMC Server Software
 
-Welcome to the java plugin template for allay.
+## Roadmap:
 
-## Prerequisites
+ * [x] Server Start and Stop Messages
+ * [x] Player Join and Leave Messages
+ * [x] Minecraft to Discord Chat Relay
+ * [x] Discord to Minecraft Chat Relay
+ * [x] Player Death Messages
+ * [x] /discord Command In-Game to get a discord server link
+ * [ ] Discord account linking for rewards & ranks
+ * [ ] Any Suggestions Please Let Me Know! Thanks
 
-- Java21 or higher.
-- Allay installed.
+## Important
+You can customize everything in this plugin. From enabling only specific features to changing all the responses and chat format. Checkout our config.yml
 
-## Getting Started
+For any support needed relating to an issue with the plugin or needing help to set it up, you may DM me on Discord!
 
-1. **Clone this Repository**
-
-```bash
-git clone https://github.com/AllayMC/JavaPluginTemplate.git
-```
-   
-2. **Navigate to the Cloned Directory**
-
-```bash
-cd JavaPluginTemplate
-```
-   
-3. **Change Plugin Information**
-
-- Rename package name from `org.allaymc.javaplugintemplate` to `your.group.name.and.pluginname`
-- Edit [build.gradle.kts](build.gradle.kts) and [settings.gradle.kts](settings.gradle.kts)
-- Edit [plugin.json](src/main/resources/plugin.json)
-- Reload gradle
-   
-4. **Build and Run Your Plugin**
-
-```bash
-gradlew shadowJar
-```
-   
-This command will produce a `.jar` file in the `build/libs` directory. 
-Copy the `.jar` file to the `plugins` directory of your allay server.
-Start the allay server and check the logs to ensure your plugin loads and operates
-as expected.
-
-5. **Test Your Plugin in Gradle**
-
-```bash
-gradlew runServer
-```
-
-This command will start an allay server with your plugin loaded.
-Then close allay server by clicking `X` in the dashboard window.
-
-## Documentation
-
-For a deeper dive into the Allay API and its functionalities, please refer to our [documentation](https://docs.allaymc.org) (WIP).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
