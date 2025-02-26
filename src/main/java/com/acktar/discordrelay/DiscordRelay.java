@@ -2,6 +2,7 @@ package com.acktar.discordrelay;
 
 import org.allaymc.api.plugin.Plugin;
 import org.allaymc.api.server.Server;
+import org.allaymc.api.registry.Registries;
 
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.snakeyaml.YamlSnakeYamlConfigurer;
@@ -32,6 +33,10 @@ public class DiscordRelay extends Plugin {
     public void onEnable() {
         // Initialize Discord Bot
         DiscordAPI.init();
+
+        if (DiscordRelay.INSTANCE.CONFIG.discordCommandToggle()) {
+            Registries.COMMANDS.register(new DiscordCommand());
+        }
 
         // Send "Server Started" message
         if (CONFIG.startMessages()) {
