@@ -6,8 +6,8 @@
  * [x] Player Join and Leave Messages
  * [x] Minecraft to Discord Chat Relay
  * [x] Discord to Minecraft Chat Relay
- * [x] Player Death Messages
  * [x] /discord Command In-Game to get a discord server link
+ * [ ] Player Death Messages (No PlayerDeathEvent or I'm just blind)
  * [ ] Discord account linking for rewards & ranks
  * [ ] Any Suggestions Please Let Me Know! Thanks
 
