@@ -9,6 +9,7 @@
  * [x] /discord Command In-Game to get a discord server link
  * [ ] Player Death Messages (No PlayerDeathEvent or I'm just blind)
  * [ ] Discord account linking for rewards & ranks
+ * [ ] Discord-Minecraft / Vice versa Role syncing
  * [ ] Any Suggestions Please Let Me Know! Thanks
 
 ## Important
