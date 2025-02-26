@@ -5,9 +5,9 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "org.allaymc.javaplugintemplate"
-description = "Java plugin template for allay server"
-version = "1.0.0"
+group = "com.acktar.discordrelay"
+description = "A Simple Minecraft to Discord Relay for the AllayMC Server Software!"
+version = "1.0.0-SNAPSHOT"
 
 java {
     toolchain {
@@ -26,6 +26,7 @@ repositories {
 dependencies {
     compileOnly(group = "org.allaymc.allay", name = "api", version = "master-SNAPSHOT")
     compileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.34")
+    implementation("com.github.discord-jda:JDA:v5.3.0")
 
     annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.34")
 }
