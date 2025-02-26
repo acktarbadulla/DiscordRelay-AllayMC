@@ -50,6 +50,10 @@ private boolean joinToggle = true;
 @CustomKey("quitToggle")
 private boolean quitToggle = true;
 
+@Comment("ENABLE /discord COMMAND IN-GAME")
+@CustomKey("discordCommandToggle")
+private boolean discordCommandToggle = true;
+
 @Comment("ENABLES MINECRAFT TO DISCORD CHAT RELAY")
 @CustomKey("minecraftToDiscordToggle")
 private boolean minecraftToDiscordToggle = true;
@@ -78,6 +82,10 @@ private String joinMessage = "**➕ | PLAYER joined the game!**";
 @CustomKey("quitMessage")
 private String quitMessage = "**➖ | PLAYER left the game!**";
 
+@Comment("MESSAGE THAT IS SENT WHEN RUNNING /discord")
+@CustomKey("discordCommandText")
+private String discordCommandText = "§l§7[§bDiscord§r§lRelay§7] » §r§aJoin our Discord Server at §dhttps://discord.gg/yourlinkhere";
+  
 @Comment("MESSAGE FORMAT MINECRAFT TO DISCORD")
 @CustomKey("minecraftToDiscordFormat")
 private String minecraftToDiscordFormat = "**[MC | PLAYER] »** MESSAGE";
