@@ -18,7 +18,7 @@ public class DiscordCommand extends SimpleCommand {
 
             if (discordMessage == null || discordMessage.isEmpty()) {
                 sender.sendText("§cThe Discord message is not set in the config.");
-                return context.success();
+                return context.fail();
             }
 
             sender.sendText(discordMessage);
