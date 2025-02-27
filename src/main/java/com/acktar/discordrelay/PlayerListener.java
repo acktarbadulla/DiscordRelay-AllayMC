@@ -3,6 +3,7 @@ package com.acktar.discordrelay;
 import org.allaymc.api.eventbus.event.player.PlayerJoinEvent;
 import org.allaymc.api.eventbus.event.player.PlayerQuitEvent;
 import org.allaymc.api.eventbus.event.player.PlayerChatEvent;
+import org.allaymc.api.eventbus.event.entity.EntityDieEvent;
 import org.allaymc.api.eventbus.EventHandler;
 import org.allaymc.api.entity.interfaces.EntityPlayer;
 
@@ -56,6 +57,30 @@ public class PlayerListener {
         
         // Send message to Discord
         DiscordAPI.sendMessage(quitMessage);
+        }
+    }
+
+    // Listen to player DEATH event
+    @EventHandler
+    public void onPlayerDeath(EntityDieEvent event) {
+        if (event.getEntity() instanceof EntityPlayer) {
+        EntityPlayer player = (EntityPlayer) event.getEntity();
+            
+        if (DiscordRelay.INSTANCE.CONFIG.deathToggle()) {
+        // Get the DEATH message from the config
+        String deathMessageTemplate = DiscordRelay.INSTANCE.CONFIG.deathMessage();
+        
+        if (deathMessageTemplate == null || deathMessageTemplate.isEmpty()) {
+            log.info("Player DEATH message not set in the config.");
+            return;
+        }
+
+        // Replace the placeholder "PLAYER" with the actual player's name
+        String deathMessage = deathMessageTemplate.replace("PLAYER", player.getDisplayName());
+        
+        // Send message to Discord
+        DiscordAPI.sendMessage(deathMessage);
+        }
         }
     }
     
