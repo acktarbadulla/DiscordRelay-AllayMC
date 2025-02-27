@@ -20,7 +20,7 @@ private String botToken = "";
 
 @Comment("DISCORD BOT ACTIVITY | EX PLAYING <WITH DISCORDRELAY FOR ALLAYMC>")
 @CustomKey("botActivity")
-private String botActivity = "WITH DISCORDRELAY FOR ALLAYMC";
+private String botActivity = "Syncing Chat...";
 
 @Comment("DISCORD CHANNEL-TOPIC | EX <POWERED BY DISCORDRELAY FOR ALLAYMC>")
 @CustomKey("channelTopic")
@@ -49,6 +49,10 @@ private boolean joinToggle = true;
 @Comment("ENABLE SEND MESSAGE TO DISCORD WHEN A PLAYER LEAVES THE MINECRAFT SERVER")
 @CustomKey("quitToggle")
 private boolean quitToggle = true;
+
+@Comment("ENABLE SEND MESSAGE TO DISCORD WHEN A PLAYER DIES... IN THE MINECRAFT SERVER OFC")
+@CustomKey("deathToggle")
+private boolean deathToggle = true;
 
 @Comment("ENABLE /discord COMMAND IN-GAME")
 @CustomKey("discordCommandToggle")
@@ -82,6 +86,10 @@ private String joinMessage = "**➕ | PLAYER joined the game!**";
 @CustomKey("quitMessage")
 private String quitMessage = "**➖ | PLAYER left the game!**";
 
+@Comment("MESSAGE THAT IS SENT WHEN A PLAYER DIES... IN THE MC SERVER OFC")
+@CustomKey("deathMessage")
+private String deathMessage = "**💀 | PLAYER died!**";
+  
 @Comment("MESSAGE THAT IS SENT WHEN RUNNING /discord")
 @CustomKey("discordCommandText")
 private String discordCommandText = "§l§7[§bDiscord§r§lRelay§7] » §r§aJoin our Discord Server at §dhttps://discord.gg/yourlinkhere";
