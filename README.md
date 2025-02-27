@@ -7,7 +7,7 @@
  * [x] Minecraft to Discord Chat Relay
  * [x] Discord to Minecraft Chat Relay
  * [x] /discord Command In-Game to get a discord server link
- * [ ] Player Death Messages (No PlayerDeathEvent or I'm just blind)
+ * [x] Player Death Messages
  * [ ] Discord account linking for rewards & ranks
  * [ ] Discord-Minecraft / Vice versa Role syncing
  * [ ] Any Suggestions Please Let Me Know! Thanks
