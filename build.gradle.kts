@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.acktar.discordrelay"
-description = "A Simple Minecraft to Discord Relay for the AllayMC Server Software!"
+description = "A Simple Minecraft to Discord Relay for the POWERNUKKITX Server Software!"
 version = "1.0.0-SNAPSHOT"
 
 java {
@@ -24,9 +24,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly(group = "org.allaymc.allay", name = "api", version = "master-SNAPSHOT")
+    compileOnly("com.github.PowerNukkitX:PowerNukkitX:master-SNAPSHOT")
     compileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.34")
     implementation("com.github.discord-jda:JDA:v5.3.0")
+    implementation("eu.okaeri:okaeri-configs-yaml-snakeyaml:5.0.6")
 
     annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.34")
 }
