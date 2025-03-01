@@ -1,4 +1,4 @@
-#  DiscordRelay for AllayMC Server Software
+#  DiscordRelay for AllayMC & PowerNukkitX Server Software
 
 ![Banner](https://github.com/acktarbadulla/DiscordRelay-AllayMC/blob/master/20250227_181724.png)
 
