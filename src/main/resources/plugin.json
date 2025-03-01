@@ -1,7 +1,0 @@
-{
-  "entrance": "com.acktar.discordrelay.DiscordRelay",
-  "name": "DiscordRelay",
-  "authors": ["ACKTAR"],
-  "description": "A Simple Minecraft to Discord Relay for the AllayMC Server Software!",
-  "version": "1.0.0-SNAPSHOT"
-}

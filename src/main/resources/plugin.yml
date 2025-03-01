@@ -1,0 +1,16 @@
+main: com.acktar.discordrelay.DiscordRelay
+name: DiscordRelay
+authors: ["ACKTAR"]
+description: A Simple Minecraft to Discord Relay for the POWERNUKKITX Server Software!
+version: "1.0.0-SNAPSHOT"
+api: ["2.0.0"]
+
+commands:
+  discord:
+    description: "Displays the Discord invite link"
+    usage: "/discord"
+    permission: discordrelay.command.discord
+
+permissions:
+  discordrelay.command.discord:
+    default: true
