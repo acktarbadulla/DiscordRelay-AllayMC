@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import org.allaymc.api.server.Server;
+import cn.nukkit.Server;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,7 +50,7 @@ public class DiscordListener extends ListenerAdapter {
                 .replace("MESSAGE", discordMessage);
 
         // Send the formatted message to all players in the Minecraft server
-        Server.getInstance().broadcastText(broadcastMessage);
+        Server.getInstance().broadcastMessage(broadcastMessage);
         }
     }
 }
