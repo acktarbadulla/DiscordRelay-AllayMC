@@ -1,8 +1,8 @@
 package com.acktar.discordrelay;
 
-import org.allaymc.api.plugin.Plugin;
-import org.allaymc.api.server.Server;
-import org.allaymc.api.registry.Registries;
+import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.command.Command;
+import cn.nukkit.command.CommandSender;
 
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.snakeyaml.YamlSnakeYamlConfigurer;
@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
-public class DiscordRelay extends Plugin {
+public class DiscordRelay extends PluginBase {
 
     public static DiscordRelay INSTANCE;
     public Config CONFIG;
@@ -22,7 +22,7 @@ public class DiscordRelay extends Plugin {
         log.info("Loading Configuration file..!");
         CONFIG = ConfigManager.create(Config.class, config -> {
             config.withConfigurer(new YamlSnakeYamlConfigurer());
-            config.withBindFile(pluginContainer.dataFolder().resolve("config.yml"));
+            config.withBindFile(getDataFolder() + "/config.yml");
             config.withRemoveOrphans(true);
             config.saveDefaults();
             config.load(true);
@@ -34,16 +34,12 @@ public class DiscordRelay extends Plugin {
         // Initialize Discord Bot
         DiscordAPI.init();
 
-        if (DiscordRelay.INSTANCE.CONFIG.discordCommandToggle()) {
-            Registries.COMMANDS.register(new DiscordCommand());
-        }
-
         // Send "Server Started" message
         if (CONFIG.startMessages()) {
             DiscordAPI.sendMessage(CONFIG.statusServerStarted());
         }
         
-        Server.getInstance().getEventBus().registerListener(new PlayerListener());
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
 
     @Override
@@ -57,5 +53,22 @@ public class DiscordRelay extends Plugin {
         DiscordAPI.shutdown();
         
         log.info("DiscordRelay disabled!");
+    }
+    
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("discord")) {
+        if (DiscordRelay.INSTANCE.CONFIG.discordCommandToggle()) {
+            String discordMessage = DiscordRelay.INSTANCE.CONFIG.discordCommandText();
+        if (discordMessage == null || discordMessage.isEmpty()) {
+             sender.sendMessage("§cThe Discord message is not set in the config.");
+             return false;
+        }
+        
+        sender.sendMessage(discordMessage);
+        return true;
+        }
+        }
+        return false;
     }
 }
