@@ -18,13 +18,13 @@ public class Config extends OkaeriConfig {
 @CustomKey("botToken")
 private String botToken = "";
 
-@Comment("DISCORD BOT ACTIVITY | EX PLAYING <WITH DISCORDRELAY FOR ALLAYMC>")
+@Comment("DISCORD BOT ACTIVITY | EX PLAYING <WITH DISCORDRELAY FOR POWERNUKKITX>")
 @CustomKey("botActivity")
 private String botActivity = "Syncing Chat...";
 
-@Comment("DISCORD CHANNEL-TOPIC | EX <POWERED BY DISCORDRELAY FOR ALLAYMC>")
+@Comment("DISCORD CHANNEL-TOPIC | EX <POWERED BY DISCORDRELAY FOR POWERNUKKITX>")
 @CustomKey("channelTopic")
-private String channelTopic = "POWERED BY DISCORDRELAY FOR ALLAYMC";
+private String channelTopic = "POWERED BY DISCORDRELAY FOR POWERNUKKITX";
 
 @Comment("DISCORD CHANNEL-ID FOR SENDING LOGS")
 @CustomKey("channelId")
