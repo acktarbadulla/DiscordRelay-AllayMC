@@ -1,25 +1,24 @@
 package com.acktar.discordrelay;
 
-import org.allaymc.api.eventbus.event.player.PlayerJoinEvent;
-import org.allaymc.api.eventbus.event.player.PlayerQuitEvent;
-import org.allaymc.api.eventbus.event.player.PlayerChatEvent;
-import org.allaymc.api.eventbus.event.entity.EntityDieEvent;
-import org.allaymc.api.eventbus.EventHandler;
-import org.allaymc.api.entity.interfaces.EntityPlayer;
+import cn.nukkit.Server;
+import cn.nukkit.event.EventHandler;
+import cn.nukkit.event.EventPriority;
+import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerChatEvent;
+import cn.nukkit.event.player.PlayerDeathEvent;
+import cn.nukkit.event.player.PlayerJoinEvent;
+import cn.nukkit.event.player.PlayerQuitEvent;
 
 import lombok.extern.slf4j.Slf4j;
 import java.util.regex.Pattern;
 
 @Slf4j
-public class PlayerListener {
+public class PlayerListener implements Listener {
 
     private static final Pattern DISCORD_INVITE_PATTERN = Pattern.compile("(?i)discord\\.gg/[a-zA-Z0-9]+");
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
-        EntityPlayer player = event.getPlayer();
-        String playerName = player.getDisplayName();
-        
         if (DiscordRelay.INSTANCE.CONFIG.joinToggle()) {
         // Get the join message from the config
         String joinMessageTemplate = DiscordRelay.INSTANCE.CONFIG.joinMessage();
@@ -30,7 +29,7 @@ public class PlayerListener {
         }
 
         // Replace the placeholder "PLAYER" with the actual player's name
-        String joinMessage = joinMessageTemplate.replace("PLAYER", playerName);
+        String joinMessage = joinMessageTemplate.replace("PLAYER", event.getPlayer().getName());
         
         // Send message to Discord
         DiscordAPI.sendMessage(joinMessage);
@@ -38,11 +37,8 @@ public class PlayerListener {
     }
 
     // Listen to player quitting event
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerQuit(PlayerQuitEvent event) {
-        EntityPlayer player = event.getPlayer();
-        String playerName = player.getDisplayName();
-
         if (DiscordRelay.INSTANCE.CONFIG.quitToggle()) {
                 // Get the QUIT message from the config
         String quitMessageTemplate = DiscordRelay.INSTANCE.CONFIG.quitMessage();
@@ -53,7 +49,7 @@ public class PlayerListener {
         }
 
         // Replace the placeholder "PLAYER" with the actual player's name
-        String quitMessage = quitMessageTemplate.replace("PLAYER", playerName);
+        String quitMessage = quitMessageTemplate.replace("PLAYER", event.getPlayer().getName());;
         
         // Send message to Discord
         DiscordAPI.sendMessage(quitMessage);
@@ -61,11 +57,8 @@ public class PlayerListener {
     }
 
     // Listen to player DEATH event
-    @EventHandler
-    public void onPlayerDeath(EntityDieEvent event) {
-        if (event.getEntity() instanceof EntityPlayer) {
-        EntityPlayer player = (EntityPlayer) event.getEntity();
-            
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    public void onPlayerDeath(PlayerDeathEvent event) {
         if (DiscordRelay.INSTANCE.CONFIG.deathToggle()) {
         // Get the DEATH message from the config
         String deathMessageTemplate = DiscordRelay.INSTANCE.CONFIG.deathMessage();
@@ -76,24 +69,21 @@ public class PlayerListener {
         }
 
         // Replace the placeholder "PLAYER" with the actual player's name
-        String deathMessage = deathMessageTemplate.replace("PLAYER", player.getDisplayName());
+        String deathMessage = deathMessageTemplate.replace("PLAYER", event.getEntity().getName());
         
         // Send message to Discord
         DiscordAPI.sendMessage(deathMessage);
         }
-        }
     }
     
-    @EventHandler
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onPlayerChat(PlayerChatEvent event) {
-        EntityPlayer player = event.getPlayer();
-        String playerName = player.getDisplayName();
         String message = event.getMessage();
 
         if (DiscordRelay.INSTANCE.CONFIG.minecraftToDiscordToggle()) {
         // Check if the message contains a Discord invite link
         if (DISCORD_INVITE_PATTERN.matcher(message).find()) {
-            log.info("Blocked Discord invite from " + playerName);
+            log.info("Blocked Discord invite from " + event.getPlayer().getName());
             return; // Do not send the message to Discord
         }
         
@@ -107,7 +97,7 @@ public class PlayerListener {
 
         // Replace placeholders with actual values
         String chatMessage = chatMessageTemplate
-            .replace("PLAYER", playerName)
+            .replace("PLAYER", event.getPlayer().getName())
             .replace("MESSAGE", message);
 
         // Send the formatted message to Discord
